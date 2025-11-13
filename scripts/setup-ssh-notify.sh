@@ -16,7 +16,7 @@ sudo apt install -y curl
 echo "[*] Create a notification script..."
 cat <<EOF | sudo tee /usr/local/bin/ssh_notify.sh >/dev/null
 #!/bin/bash
-if [ "$PAM_TYPE" != "open_session" ]; then
+if [ "\$PAM_TYPE" != "open_session" ]; then
     exit 0
 fi
 
@@ -24,7 +24,7 @@ BOT_TOKEN="$BOT_TOKEN"
 CHAT_ID="$CHAT_ID"
 SERVER_NAME="$SERVER_NAME"
 IP=\$(echo \$SSH_CONNECTION | awk '{print \$1}')
-USER=\$(whoami)
+USER="\$PAM_USER"
 DATE=\$(date '+%Y-%m-%d %H:%M:%S')
 
 TEXT="🚨 لاگین جدید SSH 🚨
