@@ -7,17 +7,18 @@
 
 ```
 server-setup-toolkit/
+|
+├── initial_server_setup/
+│   ├── firewall_lockdown.sh     # بستن تمام پورت‌ها به جز SSH
+│   ├── setup_ssh_notify.sh      # ارسال اعلان لاگین SSH به تلگرام
+│   ├── ubuntu_init_setup.sh     # اسکریپت اصلی تنظیمات اولیه سرور
 │
-├── scripts/
-│   ├── ubuntu-init-setup.sh     # اسکریپت اصلی تنظیمات اولیه سرور
-│   ├── firewall-lockdown.sh     # بستن تمام پورت‌ها به جز SSH
-│   ├── setup-ssh-notify.sh      # ارسال اعلان لاگین SSH به تلگرام
+├── build_ssh_key/
+│   ├── build_ssh_key.bat        # ساخت کلید SSH در ویندوز
+│   ├── build_ssh_key.sh         # ساخت کلید SSH در لینوکس
 │
-├── windows/
-│   └── build-ssh-key.bat        # ساخت کلید SSH در ویندوز
-│
-├── linux/
-│   └── build-ssh-key.sh         # ساخت کلید SSH در لینوکس
+├── fail2ban_installer/
+│   └── install.sh               # نصب fail2ban
 │
 └── README.md                    # راهنمای استفاده
 ```
@@ -68,7 +69,7 @@ ssh-keygen -l -f /etc/ssh/ssh_host_ecdsa_key.pub
 روی کامپیوتر خود فایل زیر را اجرا کنید:
 
 ```
-windows\build-ssh-key.bat
+build_ssh_key\build_ssh_key.bat
 ```
 
 - از شما نامی برای سرور/پروژه پرسیده می‌شود (مثلاً `server1`).  
@@ -82,7 +83,7 @@ windows\build-ssh-key.bat
 روی سیستم خود این فایل را اجرا کنید:
 
 ```
-bash build-ssh-key.sh
+bash build_ssh_key/build_ssh_key.sh
 ```
 
 - مشابه ویندوز، نامی برای سرور/پروژه می‌گیرید.  
@@ -102,7 +103,7 @@ bash build-ssh-key.sh
 
 ```
 cd scripts
-sudo bash ubuntu-init-setup.sh
+sudo bash initial_server_setup/ubuntu_init_setup.sh
 ```
 
 این اسکریپت:
@@ -134,7 +135,7 @@ sudo bash ubuntu-init-setup.sh
 بعد از اینکه اتصال جدید درست کار کرد:
 
 ```bash
-sudo bash firewall-lockdown.sh
+sudo bash initial_server_setup/firewall_lockdown.sh
 ```
 
 این اسکریپت:
@@ -149,7 +150,7 @@ sudo bash firewall-lockdown.sh
 برای فعال‌سازی اعلان‌ها:
 
 ```bash
-sudo bash setup-ssh-notify.sh
+sudo bash initial_server_setup/setup_ssh_notify.sh
 ```
 
 اطلاعات موردنیاز:
@@ -174,12 +175,12 @@ sudo bash setup-ssh-notify.sh
 
 - احتمالاً پورت SSH را درست وارد نکرده‌اید.
 - مطمئن شوید کلید عمومی درست روی سرور قرار گرفته باشد.
-- قبل از اجرای `firewall-lockdown.sh` حتماً اتصال جدید را تست کنید.
+- قبل از اجرای `firewall_lockdown.sh` حتماً اتصال جدید را تست کنید.
 
 ### ❔ چگونه کلید جدید بسازم؟
 
-- در ویندوز: `windows\build-ssh-key.bat`
-- در لینوکس/مک: دستور زیر را بزنید:`linux\build-ssh-key.sh`
+- در ویندوز: `build_ssh_key\build_ssh_key.bat`
+- در لینوکس/مک: دستور زیر را بزنید:`build_ssh_key/build_ssh_key.sh`
 
 ### ❔ اعلان تلگرام کار نمی‌کند؟
 
