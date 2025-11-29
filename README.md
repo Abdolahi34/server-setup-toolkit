@@ -8,14 +8,14 @@
 ```
 server-setup-toolkit/
 |
+├── build_ssh_key/
+│   ├── build_ssh_key.bat        # ساخت کلید SSH در ویندوز
+│   ├── build_ssh_key.sh         # ساخت کلید SSH در لینوکس
+│
 ├── initial_server_setup/
 │   ├── firewall_lockdown.sh     # بستن تمام پورت‌ها به جز SSH
 │   ├── setup_ssh_notify.sh      # ارسال اعلان لاگین SSH به تلگرام
 │   ├── ubuntu_init_setup.sh     # اسکریپت اصلی تنظیمات اولیه سرور
-│
-├── build_ssh_key/
-│   ├── build_ssh_key.bat        # ساخت کلید SSH در ویندوز
-│   ├── build_ssh_key.sh         # ساخت کلید SSH در لینوکس
 │
 ├── fail2ban_installer/
 │   └── install.sh               # نصب fail2ban
